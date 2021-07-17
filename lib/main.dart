@@ -18,7 +18,7 @@ debugShowCheckedModeBanner: false,
 
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: Home(),
+      home: HomePage(),
     );
   }
 }

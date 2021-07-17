@@ -5,11 +5,27 @@ class ArticleModel{
   String description;
   String urlToImage;
   String content;
-  String url;
+  String articleUrl;
 
   ArticleModel({this.title,this.description,this.author,this.content,
-    this.urlToImage, this.url});
+    this.urlToImage, this.articleUrl});
 
 
 
 }
+
+// class ArticleModel{
+//
+//   String title;
+//   String author;
+//   String description;
+//   String urlToImage;
+//   String content;
+//   String url;
+//
+//   ArticleModel({this.title,this.description,this.author,this.content,
+//     this.urlToImage, this.url});
+//
+//
+//
+// }
