@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -5,6 +6,7 @@ import 'package:news_app/helper/News.dart';
 import 'package:news_app/helper/data.dart';
 import 'package:news_app/models/article_model.dart';
 import 'package:news_app/models/category_model.dart';
+import 'package:news_app/views/article_details.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -13,7 +15,7 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   // var news_appList;
-  bool _loading=true;
+  bool _loading = true;
 
   List<CategoryModel> categories = new List<CategoryModel>();
   List<ArticleModel> articles = new List<ArticleModel>();
@@ -40,43 +42,49 @@ class _HomeState extends State<Home> {
     return Scaffold(
         body: _loading
             ? Center(
-                child: Container(
-                child: CircularProgressIndicator(),
-              ))
-            : Container(
-                child: Column(
-                  children: [
-                    Container(
-                      padding: EdgeInsets.symmetric(horizontal: 16),
-                      height: 70,
-                      child: ListView.builder(
-                          scrollDirection: Axis.horizontal,
-                          itemCount: categories.length,
-                          shrinkWrap: true,
-                          itemBuilder: (context, index) {
-                            return CategoryItem(
-                              categoryImageUrl:
-                                  categories[index].categoryImageUrl,
-                              categoryName: categories[index].categoryName,
-                            );
-                          }),
-                    ),
-                    Container(
-                      child: ListView.builder(
-                        shrinkWrap: true,
-
-                        itemBuilder: (context, index) {
-                          return NewsItem(
-                              imageUrl: articles[index].urlToImage,
-                              title: articles[index].title,
-                              desc: articles[index].description);
-                        },
-                        itemCount: articles.length,
-                      ),
-                    )
-                  ],
+            child: Container(
+              child: CircularProgressIndicator(),
+            ))
+            : SingleChildScrollView(
+          child: Container(
+            child: Column(
+              children: [
+                Container(
+                  padding: EdgeInsets.symmetric(horizontal: 16),
+                  height: 70,
+                  child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: categories.length,
+                      shrinkWrap: true,
+                      itemBuilder: (context, index) {
+                        return CategoryItem(
+                          categoryImageUrl:
+                          categories[index].categoryImageUrl,
+                          categoryName: categories[index].categoryName,
+                        );
+                      }),
                 ),
-              ),
+                Container(
+                  child: ListView.builder(
+                    shrinkWrap: true,
+// scrollDirection: Axis.versioningrtical,
+                    physics: ClampingScrollPhysics(),
+                    padding:
+                    EdgeInsets.only(top: 16, left: 16, right: 16),
+                    itemBuilder: (context, index) {
+                      return NewsItem(
+                          imageUrl: articles[index].urlToImage,
+                          title: articles[index].title,
+                          desc: articles[index].description,
+                      articleUrl: articles[index].url,);
+                    },
+                    itemCount: articles.length,
+                  ),
+                )
+              ],
+            ),
+          ),
+        ),
         appBar: AppBar(
             elevation: 0.0,
             title: Text(
@@ -103,8 +111,8 @@ class CategoryItem extends StatelessWidget {
           children: [
             ClipRRect(
               borderRadius: BorderRadius.circular(6),
-              child: Image.network(
-                categoryImageUrl,
+              child: CachedNetworkImage(
+                imageUrl: categoryImageUrl,
                 width: 120,
                 height: 60,
                 fit: BoxFit.cover,
@@ -134,16 +142,48 @@ class CategoryItem extends StatelessWidget {
 }
 
 class NewsItem extends StatelessWidget {
-  final String imageUrl, title, desc;
+  final String imageUrl, title, desc, articleUrl;
 
   NewsItem(
-      {@required this.imageUrl, @required this.title, @required this.desc});
+      {@required this.imageUrl, @required this.title, @required this.desc, @required this.articleUrl});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        children: [Image.network(imageUrl), Text(title), Text(desc)],
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(context, MaterialPageRoute(builder: (context) =>
+            ArticleDetails(
+articleUrl: articleUrl,
+            )));
+      },
+      child: Container(
+
+        margin: EdgeInsets.only(bottom: 16),
+        child: Column(
+          children: [
+            ClipRRect(
+              child: Image.network(imageUrl),
+              borderRadius: BorderRadius.circular(16),
+            ),
+            SizedBox(
+              height: 8,
+            ),
+            Text(
+              title,
+              style: TextStyle(
+                  fontSize: 18,
+                  color: Colors.black87,
+                  fontWeight: FontWeight.w500),
+            ),
+            SizedBox(
+              height: 8,
+            ),
+            Text(
+              desc,
+              style: TextStyle(color: Colors.black54),
+            )
+          ],
+        ),
       ),
     );
   }

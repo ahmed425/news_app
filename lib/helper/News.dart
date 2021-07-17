@@ -9,7 +9,7 @@ class News {
 
   Future<void> getNews() async{
 
-String url="https://newsapi.org/v2/top-headlines?country=us&apiKey=65b4b1023b67477382f03e241289d4ec";
+String url="https://newsapi.org/v2/top-headlines?country=in&apiKey=65b4b1023b67477382f03e241289d4ec";
     var response = await http.get(url);
 
     var jsonData = jsonDecode(response.body);
@@ -24,7 +24,7 @@ String url="https://newsapi.org/v2/top-headlines?country=us&apiKey=65b4b1023b674
             description: element['description'],
             urlToImage: element['urlToImage'],
             content: element["content"],
-            articleUrl: element["url"],
+            url: element["url"],
           );
           news.add(article);
         }
@@ -46,7 +46,7 @@ class NewsForCategorie {
   Future<void> getNewsForCategory(String category) async{
 
     /*String url = "http://newsapi.org/v2/everything?q=$category&apiKey=${apiKey}";*/
-    String url = "https://newsapi.org/v2/top-headlines?country=us&apiKey=65b4b1023b67477382f03e241289d4ec";
+    String url = "https://newsapi.org/v2/top-headlines?country=in&apiKey=65b4b1023b67477382f03e241289d4ec";
     var response = await http.get(url);
 
     var jsonData = jsonDecode(response.body);
@@ -61,7 +61,7 @@ class NewsForCategorie {
             description: element['description'],
             urlToImage: element['urlToImage'],
             content: element["content"],
-            articleUrl: element["url"],
+            url: element["url"],
           );
           news.add(article);
         }
