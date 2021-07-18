@@ -9,7 +9,8 @@ import 'package:news_app/widgets/news_tile_widget.dart';
 import 'package:provider/provider.dart';
 
 class HomePage extends StatelessWidget {
-  var imageUrl;
+ bool _loading=true;
+  // var imageUrl;
 
 //
 //   List<CategoryModel> categories = List<CategoryModel>();
@@ -45,13 +46,13 @@ class HomePage extends StatelessWidget {
         body: SafeArea(
           child:
 
-              // _loading
-              //     ?
-
-              // Center(
-              //   child: CircularProgressIndicator(),
-              // )
-
+//               _loading
+//                   ?
+//               //
+//               Center(
+//                 child: CircularProgressIndicator(),
+//               )
+// :
               SingleChildScrollView(
             child: Container(
               child: Column(
@@ -77,9 +78,12 @@ class HomePage extends StatelessWidget {
                             (BuildContext context, AsyncSnapshot snapshot) {
                           print(snapshot.data);
                           if (snapshot.data == null) {
-                            return Container(
-                                child: Center(child: Text("Loading...")));
+                            return Center(
+                              child: Container(
+                                  child: Center(child: CircularProgressIndicator())),
+                            );
                           } else {
+                            _loading=false;
                             return ListView.builder(
                                 itemCount: snapshot.data.length,
                                 shrinkWrap: true,
