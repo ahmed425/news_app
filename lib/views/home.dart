@@ -8,9 +8,9 @@ import 'package:news_app/widgets/my_app_bar_widget.dart';
 import 'package:news_app/widgets/news_tile_widget.dart';
 import 'package:provider/provider.dart';
 
-import 'display_news_for_specificcategory.dart';
-
 class HomePage extends StatelessWidget {
+  var imageUrl;
+
 //
 //   List<CategoryModel> categories = List<CategoryModel>();
 //
@@ -37,57 +37,71 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     final providerData = Provider.of<HomePageProvider>(context);
     providerData.getCategories();
+    providerData.fetchAndSetNews();
+    print(providerData.articles.length.toString() + "in build");
+    // providerData.getNews().then((value) =>imageUrl=value);
     return Scaffold(
         appBar: MyAppBar(),
         body: SafeArea(
-            child:
+          child:
 
-                // _loading
-                //     ?
+              // _loading
+              //     ?
 
-                // Center(
-                //   child: CircularProgressIndicator(),
-                // )
+              // Center(
+              //   child: CircularProgressIndicator(),
+              // )
 
-                SingleChildScrollView(
-                    child: Container(
-                        child: Column(children: <Widget>[
-          /// Categories
-          Container(
-            padding: EdgeInsets.symmetric(horizontal: 16),
-            height: 70,
-            child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                itemCount: providerData.categories.length,
-                itemBuilder: (context, index) {
-                  return CategoryWidget(providerData.categories[index].imageAssetUrl,providerData.categories[index].categoryName);
-
-                }),
+              SingleChildScrollView(
+            child: Container(
+              child: Column(
+                children: <Widget>[
+                  /// Categories
+                  Container(
+                    padding: EdgeInsets.symmetric(horizontal: 16),
+                    height: 70,
+                    child: ListView.builder(
+                        scrollDirection: Axis.horizontal,
+                        itemCount: providerData.categories.length,
+                        itemBuilder: (context, index) {
+                          return CategoryWidget(
+                              providerData.categories[index].imageAssetUrl,
+                              providerData.categories[index].categoryName);
+                        }),
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(top: 16),
+                    child: FutureBuilder(
+                        future: providerData.fetchAndSetNews(),
+                        builder:
+                            (BuildContext context, AsyncSnapshot snapshot) {
+                          print(snapshot.data);
+                          if (snapshot.data == null) {
+                            return Container(
+                                child: Center(child: Text("Loading...")));
+                          } else {
+                            return ListView.builder(
+                                itemCount: snapshot.data.length,
+                                shrinkWrap: true,
+                                physics: ClampingScrollPhysics(),
+                                itemBuilder: (context, index) {
+                                  return NewsTileWidget(
+                                      snapshot.data[index].urlToImage,
+                                      snapshot.data[index].title,
+                                      snapshot.data[index].description,
+                                      snapshot.data[index].articleUrl);
+                                });
+                          }
+                        }),
+                  )
+                ],
+              ),
+            ),
           ),
-        ])))));
-  }
-}
+        ));
 
 // ignore: non_constant_identifier_names
 
-/// News Article
-//                 Container(
-//                   margin: EdgeInsets.only(top: 16),
-//                   child: ListView.builder(
-//                       itemCount: 2,
-//                       shrinkWrap: true,
-//                       physics: ClampingScrollPhysics(),
-//                       itemBuilder: (context, index) {
-//                         return NewsTileWidget(
-//                           // imageUrl: newslist[index].urlToImage ?? "",
-//                           // title: newslist[index].title ?? "",
-//                           // desc: newslist[index].description ?? "",
-//                           // articleUrl: newslist[index].articleUrl ?? "",
-//                         );
-//                       }),
-//                 ),
-//               ],
-//             ),
-//           ),
-//         ),
-//       ),
+    /// News Article
+  }
+}

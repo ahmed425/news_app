@@ -1,12 +1,22 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:news_app/helper/AllNews.dart';
-import 'package:news_app/models/NewsTileModel.dart';
 import 'package:news_app/models/article_model.dart';
 import 'package:news_app/models/category_model.dart';
+import 'package:http/http.dart' as http;
 
 class HomePageProvider with ChangeNotifier{
-  NewsTileModel _newsTileModel=new NewsTileModel(imageUrl: null, title: null, desc: null, articleUrl: null);
+  // NewsTileModel _newsTileModel=new NewsTileModel(imageUrl: null, title: null, desc: null, articleUrl: null);
   // bool _loading=true;
+  List<ArticleModel> _articles  = [];
+
+  List<ArticleModel> get articles => _articles;
+
+  set articles(List<ArticleModel> value) {
+    _articles = value;
+  }
+
   List<ArticleModel> newsList;
   List<CategoryModel> _categories =
   [
@@ -87,9 +97,40 @@ class HomePageProvider with ChangeNotifier{
      print(_categories[3].categoryName);
 
   }
-  void getNews() async {
+
+  Future<List<ArticleModel>> fetchAndSetNews() async{
+
+    String url = "http://newsapi.org/v2/top-headlines?country=in&apiKey=65b4b1023b67477382f03e241289d4ec";
+
+    var response = await http.get(url);
+
+    var jsonData = jsonDecode(response.body);
+
+    if(jsonData['status'] == "ok"){
+      jsonData["articles"].forEach((element){
+
+        if(element['urlToImage'] != null && element['description'] != null){
+          ArticleModel article = ArticleModel(
+            title: element['title'],
+            author: element['author'],
+            description: element['description'],
+            urlToImage: element['urlToImage'],
+            content: element["content"],
+            articleUrl: element["url"],
+          );
+          _articles.add(article);
+// print(articles.length.toString());
+
+        }
+
+      });
+    }
+print(_articles.length.toString());
+return _articles;
+  }
+  void setNews() async {
     AllNews allNews = AllNews();
-    await allNews.getNews();
+    await fetchAndSetNews();
     newsList = allNews.articles;
     // setState(() {
     //   _loading = false;
@@ -98,10 +139,10 @@ class HomePageProvider with ChangeNotifier{
     // });
   }
   //Method to update news tile
-  void updateNewsTile(){
-_newsTileModel.imageUrl=newsList[0].urlToImage;
-
-  }
+  // void updateNewsTile(){
+// _newsTileModel.imageUrl=newsList[0].urlToImage;
+//
+//   }
 
   // CategoryModel get categoryModel => _categoryModel;
 }
