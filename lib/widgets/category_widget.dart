@@ -1,6 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:news_app/providers/category_provider.dart';
 import 'package:news_app/providers/home_page_provider.dart';
 import 'package:news_app/views/display_news_for_specificcategory.dart';
 import 'package:provider/provider.dart';
@@ -11,8 +10,6 @@ class CategoryWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final providerData = Provider.of<HomePageProvider>(context);
-// providerData.getCategories();
     return GestureDetector(
       onTap: () {
         print("tapping category name is :" + _categoryName);

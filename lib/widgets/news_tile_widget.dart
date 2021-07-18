@@ -24,7 +24,7 @@ class NewsTileWidget extends StatelessWidget {
       onTap: () {
         Navigator.push(context, MaterialPageRoute(builder: (context) =>
             ArticleDetails(
-              articleUrl: articleUrl,
+              articleUrl,
             )));
       },
       child: Container(

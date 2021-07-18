@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:news_app/helper/NewsForSpecificCategory.dart';
-import 'package:news_app/helper/widgets.dart';
 import 'package:news_app/providers/home_page_provider.dart';
-import 'package:news_app/views/home.dart';
 import 'package:news_app/widgets/my_app_bar_widget.dart';
 import 'package:news_app/widgets/news_tile_widget.dart';
 import 'package:provider/provider.dart';

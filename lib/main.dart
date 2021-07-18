@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:news_app/providers/category_provider.dart';
 import 'package:news_app/providers/home_page_provider.dart';
 import 'package:news_app/views/home.dart';
-import 'package:news_app/widgets/CategoryCardWidget.dart';
 import 'package:provider/provider.dart';
 // const myTask = "syncWithTheBackEnd";
 // void callbackDispatcher() {
