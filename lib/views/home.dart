@@ -1,7 +1,4 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:news_app/models/category_model.dart';
-import 'package:news_app/providers/category_provider.dart';
 import 'package:news_app/providers/home_page_provider.dart';
 import 'package:news_app/widgets/CategoryCardWidget.dart';
 import 'package:news_app/widgets/my_app_bar_widget.dart';
