@@ -7,4 +7,5 @@ class CategoryModel {
     @required this.imageAssetUrl,
     @required this.categoryName,
   });
+
 }

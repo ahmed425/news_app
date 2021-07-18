@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/providers/category_provider.dart';
+import 'package:news_app/providers/home_page_provider.dart';
 import 'package:news_app/views/home.dart';
 import 'package:news_app/widgets/CategoryCardWidget.dart';
 import 'package:provider/provider.dart';
@@ -48,7 +49,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-create: (ctx)=>CategoryProvider(),
+create: (ctx)=>HomePageProvider(),
       child: MaterialApp(
         title: 'Flutter News App',
 debugShowCheckedModeBanner: false,
@@ -58,7 +59,7 @@ debugShowCheckedModeBanner: false,
 
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
-        home: CategoryWidget(),
+        home: HomePage(),
       ),
     );
   }
