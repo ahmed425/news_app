@@ -9,7 +9,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final providerData = Provider.of<HomePageProvider>(context);
-    providerData.getCategories();
+    // providerData.getCategories();
     providerData.fetchAndSetNews();
     return Scaffold(
         appBar: MyAppBar(),
