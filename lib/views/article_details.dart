@@ -1,34 +1,34 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:news_app/providers/article_details_provider.dart';
 import 'package:news_app/widgets/my_app_bar_widget.dart';
+import 'package:provider/provider.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class ArticleDetails extends StatelessWidget {
-  String articleUrl;
-  final Completer<WebViewController> _completer=Completer<WebViewController>();
+  final Completer<WebViewController> _completer =
+      Completer<WebViewController>();
+
 
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
+    final providerData = Provider.of<ArticleDetailsProvider>(context);
+    return Scaffold(
       appBar: MyAppBar(),
-      body:
-
-      Container(
+      body: Container(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
         child: WebView(
-        initialUrl: articleUrl,
-        onWebViewCreated: ((WebViewController webViewController){
-          _completer.complete(webViewController);
-        }),
-      ),),
+          initialUrl:providerData.articleUrl ,
+          onWebViewCreated: ((WebViewController webViewController) {
+            _completer.complete(webViewController);
+          }),
+        ),
+      ),
     );
   }
-
-  ArticleDetails(this.articleUrl);
 }
-
 
 // class ArticleDetails extends StatefulWidget {
 // final String articleUrl;

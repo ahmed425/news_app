@@ -6,50 +6,15 @@ import 'package:news_app/widgets/news_tile_widget.dart';
 import 'package:provider/provider.dart';
 
 class HomePage extends StatelessWidget {
- bool _loading=true;
-  // var imageUrl;
-
-//
-//   List<CategoryModel> categories = List<CategoryModel>();
-//
-//   // void getNews() async {
-//   //   AllNews news = AllNews();
-//   //   await news.getNews();
-//   //   newslist = news.news;
-//   //   // setState(() {
-//   //   //   _loading = false;
-//   //   // });
-//   // }
-//
-//   // @override
-//   // void initState() {
-//   //   _loading = true;
-//   //   TODO: implement initState
-//     // super.initState();
-//
-//     // categories = getCategories();
-//     // getNews();
-//   // }
-//
   @override
   Widget build(BuildContext context) {
     final providerData = Provider.of<HomePageProvider>(context);
     providerData.getCategories();
     providerData.fetchAndSetNews();
-    print(providerData.articles.length.toString() + "in build");
-    // providerData.getNews().then((value) =>imageUrl=value);
     return Scaffold(
         appBar: MyAppBar(),
         body: SafeArea(
           child:
-
-//               _loading
-//                   ?
-//               //
-//               Center(
-//                 child: CircularProgressIndicator(),
-//               )
-// :
               SingleChildScrollView(
             child: Container(
               child: Column(
@@ -77,10 +42,11 @@ class HomePage extends StatelessWidget {
                           if (snapshot.data == null) {
                             return Center(
                               child: Container(
-                                  child: Center(child: CircularProgressIndicator())),
+                                  child: Center(
+                                      child: CircularProgressIndicator())),
                             );
                           } else {
-                            _loading=false;
+                            // _loading=false;
                             return ListView.builder(
                                 itemCount: snapshot.data.length,
                                 shrinkWrap: true,
@@ -100,9 +66,5 @@ class HomePage extends StatelessWidget {
             ),
           ),
         ));
-
-// ignore: non_constant_identifier_names
-
-    /// News Article
   }
 }

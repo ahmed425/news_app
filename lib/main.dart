@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:news_app/providers/article_details_provider.dart';
 import 'package:news_app/providers/home_page_provider.dart';
 import 'package:news_app/views/home.dart';
 import 'package:provider/provider.dart';
@@ -48,7 +49,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-     ChangeNotifierProvider.value(value:HomePageProvider())
+     ChangeNotifierProvider.value(value:HomePageProvider()),
+        ChangeNotifierProvider.value(value: ArticleDetailsProvider()),
       ],
 
       child: MaterialApp(

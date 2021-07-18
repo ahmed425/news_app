@@ -1,8 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:news_app/providers/home_page_provider.dart';
 import 'package:news_app/views/display_news_for_specificcategory.dart';
-import 'package:provider/provider.dart';
 
 class CategoryWidget extends StatelessWidget {
   String _imageAssetUrl;
