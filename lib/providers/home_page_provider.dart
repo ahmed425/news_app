@@ -9,12 +9,19 @@ import 'package:http/http.dart' as http;
 class HomePageProvider with ChangeNotifier{
   // NewsTileModel _newsTileModel=new NewsTileModel(imageUrl: null, title: null, desc: null, articleUrl: null);
   // bool _loading=true;
-  List<ArticleModel> _articles  = [];
+  List<ArticleModel> _allArticles  = [];
+List<ArticleModel> _specificArticles=[];
 
-  List<ArticleModel> get articles => _articles;
+  List<ArticleModel> get allArticles => _allArticles;
+
+  set allArticles(List<ArticleModel> value) {
+    _allArticles = value;
+  }
+
+  List<ArticleModel> get articles => _allArticles;
 
   set articles(List<ArticleModel> value) {
-    _articles = value;
+    _allArticles = value;
   }
 
   List<ArticleModel> newsList;
@@ -118,26 +125,65 @@ class HomePageProvider with ChangeNotifier{
             content: element["content"],
             articleUrl: element["url"],
           );
-          _articles.add(article);
+          _allArticles.add(article);
 // print(articles.length.toString());
 
         }
 
       });
     }
-print(_articles.length.toString());
-return _articles;
-  }
-  void setNews() async {
-    AllNews allNews = AllNews();
-    await fetchAndSetNews();
-    newsList = allNews.articles;
-    // setState(() {
-    //   _loading = false;
-    // _newsTile.imageUrl=new
+print(_allArticles.length.toString());
 
-    // });
+    return _allArticles;
   }
+  Future<List<ArticleModel>> fetchAndSetNewsForSpecificCategory(String category) async{
+
+    String url = "http://newsapi.org/v2/top-headlines?country=in&category=$category&apiKey=65b4b1023b67477382f03e241289d4ec";
+
+    var response = await http.get(url);
+
+    var jsonData = jsonDecode(response.body);
+
+    if(jsonData['status'] == "ok"){
+      _specificArticles.clear();
+
+      jsonData["articles"].forEach((element){
+
+        if(element['urlToImage'] != null && element['description'] != null){
+          ArticleModel article = ArticleModel(
+            title: element['title'],
+            author: element['author'],
+            description: element['description'],
+            urlToImage: element['urlToImage'],
+            content: element["content"],
+            articleUrl: element["url"],
+          );
+          _specificArticles.add(article);
+// print(articles.length.toString());
+
+        }
+
+      });
+    }
+    print(_specificArticles.length.toString());
+    return _specificArticles;
+  }
+
+  List<ArticleModel> get specificArticles => _specificArticles;
+
+  set specificArticles(List<ArticleModel> value) {
+    _specificArticles = value;
+  }
+// void setNews() async {
+  //   AllNews allNews = AllNews();
+  //   await fetchAndSetNews();
+  //   newsList = allNews.articles;
+  //   // setState(() {
+  //   //   _loading = false;
+  //   // _newsTile.imageUrl=new
+  //
+  //   // });
+  // }
   //Method to update news tile
   // void updateNewsTile(){
 // _newsTileModel.imageUrl=newsList[0].urlToImage;

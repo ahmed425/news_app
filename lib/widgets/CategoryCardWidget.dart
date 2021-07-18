@@ -4,23 +4,25 @@ import 'package:news_app/providers/category_provider.dart';
 import 'package:news_app/providers/home_page_provider.dart';
 import 'package:news_app/views/display_news_for_specificcategory.dart';
 import 'package:provider/provider.dart';
-class CategoryWidget extends StatelessWidget {
 
-   String _imageAssetUrl;
-    String _categoryName ;
+class CategoryWidget extends StatelessWidget {
+  String _imageAssetUrl;
+  String _categoryName;
 
   @override
   Widget build(BuildContext context) {
     final providerData = Provider.of<HomePageProvider>(context);
 // providerData.getCategories();
     return GestureDetector(
-      // onTap: (){
-      //   Navigator.push(context, MaterialPageRoute(
-      //       builder: (context) => CategoryNews(
-      //         newsCategory: providerData.,
-      //       )
-      //   ));
-      // },
+      onTap: () {
+        print("tapping category name is :" + _categoryName);
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => NewsOfSpecificCategory(
+                      _categoryName,
+                    )));
+      },
       child: Container(
         margin: EdgeInsets.only(right: 14),
         child: Stack(
@@ -40,10 +42,9 @@ class CategoryWidget extends StatelessWidget {
               width: 120,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(5),
-                  color: Colors.black26
-              ),
+                  color: Colors.black26),
               child: Text(
-               _categoryName,
+                _categoryName,
                 textAlign: TextAlign.center,
                 style: TextStyle(
                     color: Colors.white,
@@ -57,5 +58,5 @@ class CategoryWidget extends StatelessWidget {
     );
   }
 
-   CategoryWidget(this._imageAssetUrl, this._categoryName);
+  CategoryWidget(this._imageAssetUrl, this._categoryName);
 }
