@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:news_app/models/article_model.dart';
 import 'package:news_app/providers/article_details_provider.dart';
 import 'package:news_app/views/article_details.dart';
 import 'package:provider/provider.dart';
@@ -27,7 +26,7 @@ class NewsTileWidget extends StatelessWidget {
             )));
       },
       child: Container(
-
+padding: EdgeInsets.all(10),
         margin: EdgeInsets.only(bottom: 16),
         child: Column(
           children: [
