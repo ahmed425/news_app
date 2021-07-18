@@ -4,9 +4,9 @@ import 'package:http/http.dart' as http;
 
 import 'package:news_app/models/article_model.dart';
 
-class News {
+class AllNews {
 
-  List<ArticleModel> news  = [];
+  List<ArticleModel> articles  = [];
 
   Future<void> getNews() async{
 
@@ -28,7 +28,7 @@ class News {
             content: element["content"],
             articleUrl: element["url"],
           );
-          news.add(article);
+          articles.add(article);
         }
 
       });

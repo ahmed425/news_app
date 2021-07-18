@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:news_app/providers/category_provider.dart';
 import 'package:news_app/views/home.dart';
+import 'package:news_app/widgets/CategoryCardWidget.dart';
+import 'package:provider/provider.dart';
 // const myTask = "syncWithTheBackEnd";
 // void callbackDispatcher() {
 // // this method will be called every hour
@@ -44,16 +47,19 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter News App',
+    return ChangeNotifierProvider(
+create: (ctx)=>CategoryProvider(),
+      child: MaterialApp(
+        title: 'Flutter News App',
 debugShowCheckedModeBanner: false,
-      theme: ThemeData(
+        theme: ThemeData(
 
-        primaryColor: Colors.white,
+          primaryColor: Colors.white,
 
-        visualDensity: VisualDensity.adaptivePlatformDensity,
+          visualDensity: VisualDensity.adaptivePlatformDensity,
+        ),
+        home: CategoryWidget(),
       ),
-      home: HomePage(),
     );
   }
 }

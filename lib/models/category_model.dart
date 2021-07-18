@@ -1,5 +1,10 @@
-class CategoryModel{
+import 'package:flutter/cupertino.dart';
 
-  String categoryName;
-  String categoryImageUrl;
+class CategoryModel {
+  String imageAssetUrl, categoryName;
+
+  CategoryModel({
+    @required this.imageAssetUrl,
+    @required this.categoryName,
+  });
 }

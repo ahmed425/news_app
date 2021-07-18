@@ -1,13 +1,18 @@
+import 'package:flutter/cupertino.dart';
 import 'package:news_app/models/category_model.dart';
 
+class CategoryProvider with ChangeNotifier{
+// CategoryModel categoryCardModel=new CategoryModel();
+  List<CategoryModel> categories =new List<CategoryModel>();
+  CategoryModel categoryModel=new CategoryModel(imageAssetUrl: "",categoryName: "");
+
 List<CategoryModel> getCategories(){
-List<CategoryModel> categories =new List<CategoryModel>();
-CategoryModel categoryModel=new CategoryModel();
+
 //1
-categoryModel.categoryName="Business";
-categoryModel.imageAssetUrl="https://images.unsplash.com/photo-1444653614773-995cb1ef9efa?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=755&q=80";
-categories.add(categoryModel);
-categoryModel=new CategoryModel();
+  categoryModel.categoryName="Business";
+  categoryModel.imageAssetUrl="https://images.unsplash.com/photo-1444653614773-995cb1ef9efa?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=755&q=80";
+  categories.add(categoryModel);
+  categoryModel=new CategoryModel();
   //2
   categoryModel = new CategoryModel();
   categoryModel.categoryName = "Entertainment";
@@ -45,4 +50,5 @@ categoryModel=new CategoryModel();
   categories.add(categoryModel);
 
   return categories;
+}
 }

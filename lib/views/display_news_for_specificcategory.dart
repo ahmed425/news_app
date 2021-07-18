@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/helper/NewsForSpecificCategory.dart';
 import 'package:news_app/helper/widgets.dart';
+import 'package:news_app/views/home.dart';
+import 'package:news_app/widgets/news_tile_widget.dart';
 
 
 class CategoryNews extends StatefulWidget {
@@ -68,19 +70,24 @@ class _CategoryNewsState extends State<CategoryNews> {
         child: Container(
           child: Container(
             margin: EdgeInsets.only(top: 16),
-            child: ListView.builder(
-                itemCount: newslist.length,
-                shrinkWrap: true,
-                physics: ClampingScrollPhysics(),
-                itemBuilder: (context, index) {
-                  return NewsTile(
-                    imageUrl: newslist[index].urlToImage ?? "",
-                    title: newslist[index].title ?? "",
-                    desc: newslist[index].description ?? "",
-                    articleUrl: newslist[index].articleUrl ?? "",
-                  );
-                }),
-          ),
+            child:
+    SizedBox()
+            // ListView.builder(
+            //     itemCount: newslist.length,
+            //     shrinkWrap: true,
+            //     physics: ClampingScrollPhysics(),
+            //     itemBuilder: (context, index) {
+            //       return CategoryItem();
+                    // NewsTileWidget(
+                    // imageUrl: newslist[index].urlToImage ?? "",
+                    // title: newslist[index].title ?? "",
+                    // desc: newslist[index].description ?? "",
+                    // articleUrl: newslist[index].articleUrl ?? "",
+                  // );
+                // }
+                // ),
+          // ),
+          )
         ),
       ),
     );
