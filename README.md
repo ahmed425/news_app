@@ -18,11 +18,11 @@ The Provider pattern is used for data and state management .
 
 ## Flutter Packages/Plugins/Libraries Used
 
-  http: ^0.12.0+4
-  cached_network_image: ^2.0.0
-  webview_flutter: ^0.3.19+9
-  provider: ^4.3.3
-  android_alarm_manager_plus: ^0.4.5+20
+ - http: ^0.12.0+4
+ - cached_network_image: ^2.0.0
+ - webview_flutter: ^0.3.19+9
+ - provider: ^4.3.3
+ - android_alarm_manager_plus: ^0.4.5+20
   
 
 ## How to run
