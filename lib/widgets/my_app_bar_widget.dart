@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-Widget MyAppBar(){
+Widget myAppBar(){
   return AppBar(
     title: Row(
       mainAxisAlignment: MainAxisAlignment.center,

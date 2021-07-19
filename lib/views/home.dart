@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:news_app/providers/home_page_provider.dart';
+import 'package:news_app/providers/category_provider.dart';
+import 'package:news_app/providers/news_provider.dart';
 import 'package:news_app/widgets/category_widget.dart';
 import 'package:news_app/widgets/my_app_bar_widget.dart';
 import 'package:news_app/widgets/news_tile_widget.dart';
@@ -8,11 +9,13 @@ import 'package:provider/provider.dart';
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final providerData = Provider.of<HomePageProvider>(context);
+    final newsProvider = Provider.of<NewsProvider>(context);
+    final categoryProvider = Provider.of<CategoryProvider>(context);
+
     // providerData.getCategories();
-    providerData.fetchAndSetNews();
+    newsProvider.fetchAndSetNews();
     return Scaffold(
-        appBar: MyAppBar(),
+        appBar: myAppBar(),
         body: SafeArea(
           child:
               SingleChildScrollView(
@@ -25,17 +28,17 @@ class HomePage extends StatelessWidget {
                     height: 70,
                     child: ListView.builder(
                         scrollDirection: Axis.horizontal,
-                        itemCount: providerData.categories.length,
+                        itemCount: categoryProvider.categories.length,
                         itemBuilder: (context, index) {
                           return CategoryWidget(
-                              providerData.categories[index].imageAssetUrl,
-                              providerData.categories[index].categoryName);
+                              categoryProvider.categories[index].imageAssetUrl,
+                              categoryProvider.categories[index].categoryName);
                         }),
                   ),
                   Container(
                     margin: EdgeInsets.only(top: 16),
                     child: FutureBuilder(
-                        future: providerData.fetchAndSetNews(),
+                        future: newsProvider.fetchAndSetNews(),
                         builder:
                             (BuildContext context, AsyncSnapshot snapshot) {
                           print(snapshot.data);

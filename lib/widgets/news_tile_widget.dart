@@ -3,7 +3,6 @@ import 'package:news_app/providers/article_details_provider.dart';
 import 'package:news_app/views/article_details.dart';
 import 'package:provider/provider.dart';
 
-// ignore: must_be_immutable
 class NewsTileWidget extends StatelessWidget {
   String _imageUrl;
   String _articleUrl;

@@ -1,6 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:news_app/views/display_news_for_specificcategory.dart';
+import 'package:news_app/views/news_for_specific_category.dart';
 
 class CategoryWidget extends StatelessWidget {
   String _imageAssetUrl;
@@ -14,7 +14,7 @@ class CategoryWidget extends StatelessWidget {
         Navigator.push(
             context,
             MaterialPageRoute(
-                builder: (context) => NewsOfSpecificCategory(
+                builder: (context) => NewsForSpecificCategory(
                       _categoryName,
                     )));
       },

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/providers/article_details_provider.dart';
-import 'package:news_app/providers/home_page_provider.dart';
+import 'package:news_app/providers/category_provider.dart';
+import 'package:news_app/providers/news_provider.dart';
 import 'package:news_app/views/home.dart';
 import 'package:provider/provider.dart';
 // const myTask = "syncWithTheBackEnd";
@@ -49,8 +50,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-     ChangeNotifierProvider.value(value:HomePageProvider()),
+     ChangeNotifierProvider.value(value:NewsProvider()),
         ChangeNotifierProvider.value(value: ArticleDetailsProvider()),
+        ChangeNotifierProvider.value(value: CategoryProvider()),
+
       ],
 
       child: MaterialApp(

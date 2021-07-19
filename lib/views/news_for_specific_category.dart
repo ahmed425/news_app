@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:news_app/providers/home_page_provider.dart';
+import 'package:news_app/providers/news_provider.dart';
 import 'package:news_app/widgets/my_app_bar_widget.dart';
 import 'package:news_app/widgets/news_tile_widget.dart';
 import 'package:provider/provider.dart';
 
-class NewsOfSpecificCategory extends StatelessWidget {
+class NewsForSpecificCategory extends StatelessWidget {
   String newsCategory;
 
   @override
   Widget build(BuildContext context) {
-    final providerData = Provider.of<HomePageProvider>(context);
+    final providerData = Provider.of<NewsProvider>(context);
     print("Tapped Category is " + newsCategory);
     providerData.fetchAndSetNewsForSpecificCategory(newsCategory);
     return Scaffold(
-        appBar: MyAppBar(),
+        appBar: myAppBar(),
         body: SafeArea(
           child: SingleChildScrollView(
             child: Container(
@@ -55,5 +55,5 @@ class NewsOfSpecificCategory extends StatelessWidget {
         ));
   }
 
-  NewsOfSpecificCategory(this.newsCategory);
+  NewsForSpecificCategory(this.newsCategory);
 }
