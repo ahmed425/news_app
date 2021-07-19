@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:android_alarm_manager_plus/android_alarm_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:news_app/models/article_model.dart';
 import 'package:http/http.dart' as http;
@@ -50,6 +51,7 @@ class NewsProvider with ChangeNotifier {
     }
     print(_allArticles.length.toString());
 
+
     return _allArticles;
   }
 
@@ -57,6 +59,7 @@ class NewsProvider with ChangeNotifier {
       String category) async {
     String url =
         "http://newsapi.org/v2/top-headlines?country=in&category=$category&apiKey=65b4b1023b67477382f03e241289d4ec";
+    // print('Alarm Fired at ${DateTime.now()}');
 
     var response = await http.get(url);
 
@@ -79,7 +82,7 @@ class NewsProvider with ChangeNotifier {
         }
       });
     }
-    print(_specificArticles.length.toString());
+    // print(_specificArticles.length.toString());
     return _specificArticles;
   }
 }

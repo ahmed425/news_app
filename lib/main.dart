@@ -1,47 +1,25 @@
+import 'package:android_alarm_manager_plus/android_alarm_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:news_app/providers/article_details_provider.dart';
 import 'package:news_app/providers/category_provider.dart';
 import 'package:news_app/providers/news_provider.dart';
 import 'package:news_app/views/home.dart';
 import 'package:provider/provider.dart';
-// const myTask = "syncWithTheBackEnd";
-// void callbackDispatcher() {
-// // this method will be called every hour
-//   Workmanager.executeTask((task, inputdata) async {
-//     switch (task) {
-//       case myTask:
-//         print("this method was called from native!");
-//         Fluttertoast.showToast(msg: "this method was called from native!");
-//         break;
-//
-//       case Workmanager.iOSBackgroundTask:
-//         print("iOS background fetch delegate ran");
-//         break;
-//     }
-//
-//     //Return true when the task executed successfully or not
-//     return Future.value(true);
-//   });
-// }
-void main() {
-  // needs to be initialized before using workmanager package
+
+void printHello() {
+  final DateTime now = DateTime.now();
+  print("[$now] Hello, world!  function='$printHello'");
+}
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await AndroidAlarmManager.initialize();
   // WidgetsFlutterBinding.ensureInitialized();
-
-  // initialize Workmanager with the function which you want to invoke after any periodic time
-  // Workmanager.initialize(callbackDispatcher);
-
-  // Periodic task registration
-  // Workmanager.registerPeriodicTask(
-  //   "2",
-    // use the same task name used in callbackDispatcher function for identifying the task
-    // Each task must have a unique name if you want to add multiple tasks;
-    // myTask,
-    // When no frequency is provided the default 15 minutes is set.
-    // Minimum frequency is 15 min.
-    // Android will automatically change your frequency to 15 min if you have configured a lower frequency than 15 minutes.
-    // frequency: Duration(seconds: 3), // change duration according to your needs
-  // );
+  // final int helloAlarmID = 1;
+  // await AndroidAlarmManager.initialize();
   runApp(MyApp());
+  // await AndroidAlarmManager.periodic(
+  //     const Duration(seconds: 3), helloAlarmID, printHello);
 }
 
 class MyApp extends StatelessWidget {
@@ -50,19 +28,15 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-     ChangeNotifierProvider.value(value:NewsProvider()),
+        ChangeNotifierProvider.value(value: NewsProvider()),
         ChangeNotifierProvider.value(value: ArticleDetailsProvider()),
         ChangeNotifierProvider.value(value: CategoryProvider()),
-
       ],
-
       child: MaterialApp(
         title: 'Flutter News App',
-debugShowCheckedModeBanner: false,
+        debugShowCheckedModeBanner: false,
         theme: ThemeData(
-
           primaryColor: Colors.white,
-
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
         home: HomePage(),
@@ -70,4 +44,3 @@ debugShowCheckedModeBanner: false,
     );
   }
 }
-
