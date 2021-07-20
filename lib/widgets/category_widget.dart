@@ -2,21 +2,25 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:news_app/views/news_for_specific_category.dart';
 
+import '../models/category_model.dart';
+import '../views/news_for_specific_category.dart';
+
 class CategoryWidget extends StatelessWidget {
-  String _imageAssetUrl;
-  String _categoryName;
+final CategoryModel categoryModel;
+
+CategoryWidget(this.categoryModel);
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
         // print("tapping category name is :" + _categoryName);
-        // Navigator.push(
-        //     context,
-        //     MaterialPageRoute(
-        //         builder: (context) => NewsForSpecificCategory(
-        //               _categoryName,
-        //             )));
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => NewsForSpecificCategory(
+                      categoryModel,
+                    )));
       },
       child: Container(
         margin: EdgeInsets.only(right: 14),
@@ -25,7 +29,7 @@ class CategoryWidget extends StatelessWidget {
             ClipRRect(
               borderRadius: BorderRadius.circular(5),
               child: CachedNetworkImage(
-                imageUrl: _imageAssetUrl,
+                imageUrl: categoryModel.imageAssetUrl,
                 height: 60,
                 width: 120,
                 fit: BoxFit.cover,
@@ -39,7 +43,7 @@ class CategoryWidget extends StatelessWidget {
                   borderRadius: BorderRadius.circular(5),
                   color: Colors.black26),
               child: Text(
-                _categoryName,
+                categoryModel.categoryName,
                 textAlign: TextAlign.center,
                 style: TextStyle(
                     color: Colors.white,
@@ -53,5 +57,4 @@ class CategoryWidget extends StatelessWidget {
     );
   }
 
-  CategoryWidget(this._imageAssetUrl, this._categoryName);
 }

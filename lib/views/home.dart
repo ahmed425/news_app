@@ -1,19 +1,17 @@
-import 'package:android_alarm_manager_plus/android_alarm_manager.dart';
+// import 'package:android_alarm_manager_plus/android_alarm_manager.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:news_app/providers/all_news_provider.dart';
 import 'package:news_app/providers/category_provider.dart';
-import 'package:news_app/providers/news_provider.dart';
 import 'package:news_app/widgets/category_widget.dart';
 import 'package:news_app/widgets/my_app_bar_widget.dart';
 import 'package:news_app/widgets/news_tile_widget.dart';
 import 'package:provider/provider.dart';
-
 import '../providers/category_provider.dart';
-import '../providers/news_provider.dart';
 import '../widgets/category_widget.dart';
 import '../widgets/news_tile_widget.dart';
 
-NewsProvider newsProvider;
+AllNewsProvider newsProvider;
 
 class HomePage extends StatelessWidget {
   final int alarmId = 1;
@@ -24,7 +22,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     // AndroidAlarmManager.periodic(
     //     Duration(seconds: 3), alarmId, updateNews);
-    // newsProvider = Provider.of<NewsProvider>(context);
+    // newsProvider = Provider.of<AllNewsProvider>(context);
     // categoryProvider = Provider.of<CategoryProvider>(context);
 // print()
     return Scaffold(
@@ -47,13 +45,13 @@ class HomePage extends StatelessWidget {
                               scrollDirection: Axis.horizontal,
                               itemCount: categoryProvider.categories.length,
                               itemBuilder: (ctx, index) {
-                                final categoryName = categoryProvider
-                                    .categories[index].categoryName;
-                                final categoryImage = categoryProvider
-                                    .categories[index].imageAssetUrl;
+                                final category= categoryProvider
+                                    .categories[index];
+                                // final categoryImage = categoryProvider
+                                    // .categories[index].imageAssetUrl;
 
                                 return CategoryWidget(
-                                    categoryImage, categoryName);
+                                    category);
                               })
                           : Center(child: CircularProgressIndicator());
                     },
@@ -67,9 +65,9 @@ class HomePage extends StatelessWidget {
               padding: const EdgeInsets.only(left: 10),
               child: Container(
                 height: MediaQuery.of(context).size.height * (5 / 6),
-                child: ChangeNotifierProvider<NewsProvider>(
-                  create: (context) => NewsProvider(),
-                  child: Consumer<NewsProvider>(
+                child: ChangeNotifierProvider<AllNewsProvider>(
+                  create: (context) => AllNewsProvider(),
+                  child: Consumer<AllNewsProvider>(
                     builder: (buildContext, newsProvider, _) {
                       // print(newsProvider.allNews.toString());
                       return (newsProvider.allNews != null)
@@ -78,7 +76,7 @@ class HomePage extends StatelessWidget {
                               itemBuilder: (ctx, index) {
                                 print(newsProvider.allNews.toString());
                                 return NewsTileWidget(
-                                    newsProvider.allNews[index]);
+                                    newsProvider.allNews[index].imageUrl,newsProvider.allNews[index].desc,newsProvider.allNews[index].title);
                               })
                           : Center(child: CircularProgressIndicator());
                     },

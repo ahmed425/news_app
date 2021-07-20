@@ -6,9 +6,12 @@ import 'package:provider/provider.dart';
 import '../models/NewsTileModel.dart';
 
 class NewsTileWidget extends StatelessWidget {
- NewsTileModel newsTileModel;
+ // NewsTileModel newsTileModel;
+ //
+ // NewsTileWidget(this.newsTileModel);
+final String imageUrl,desc,title;
 
- NewsTileWidget(this.newsTileModel);
+NewsTileWidget(this.imageUrl, this.desc, this.title);
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +30,7 @@ padding: EdgeInsets.all(10),
         child: Column(
           children: [
             ClipRRect(
-              child: Image.network(newsTileModel.imageUrl,errorBuilder: (BuildContext context, Object exception, StackTrace stackTrace) {
+              child: Image.network(imageUrl,errorBuilder: (BuildContext context, Object exception, StackTrace stackTrace) {
                 return Icon(Icons.do_not_disturb);
               },),
               borderRadius: BorderRadius.circular(16),
@@ -36,7 +39,7 @@ padding: EdgeInsets.all(10),
               height: 8,
             ),
             Text(
-              newsTileModel.title,
+              title,
               style: TextStyle(
                   fontSize: 18,
                   color: Colors.black87,
@@ -46,7 +49,7 @@ padding: EdgeInsets.all(10),
               height: 8,
             ),
             Text(
-              newsTileModel.desc,
+              desc,
               style: TextStyle(color: Colors.black54),
             )
           ],

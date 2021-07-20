@@ -11,7 +11,7 @@ import '../models/NewsTileModel.dart';
 import '../models/article_model.dart';
 import 'package:http/http.dart' as http;
 
-class NewsService{
+class AllNewsService{
   List<NewsTileModel> news  = [];
 
   Future<List<NewsTileModel>> getAllNews() async{
