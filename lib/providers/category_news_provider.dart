@@ -13,21 +13,22 @@ class CategoryNewsProvider with ChangeNotifier{
   // CategoryNewsProvider(this.category);
 
   CategoryNewsRepository _categoryNewsRepository = CategoryNewsRepository();
-  CategoryNewsProvider(String category){
-    print("category in provider constructor:  "+category);
-    getCategoryNews(category);
-  }
+  // CategoryNewsProvider(String category){
+  //   print("category in provider constructor:  "+category);
+  //   getCategoryNews(category);
+  // }
 
-   getCategoryNews(String category) async{
+  Future<List<ArticleModel>> getCategoryNews(String category) async{
     print("category in getCategoryNews:  "+category);
 
     await _categoryNewsRepository.fetchCategoryNews(category).then(
             (categoryNews){
           categoryNews  = categoryNews;
-          print("news fetched: "+categoryNews.toString());
-          notifyListeners();
+          print("category news fetched in Provider Constructor Method are: "+categoryNews.toString());
+          // notifyListeners();
         }
     );
+return categoryNews;
   }
 
 }

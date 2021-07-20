@@ -51,7 +51,7 @@ class HomePage extends StatelessWidget {
                                     // .categories[index].imageAssetUrl;
 
                                 return CategoryWidget(
-                                    category);
+                                   categoryModel: category);
                               })
                           : Center(child: CircularProgressIndicator());
                     },
@@ -76,7 +76,7 @@ class HomePage extends StatelessWidget {
                               itemBuilder: (ctx, index) {
                                 print(newsProvider.allNews.toString());
                                 return NewsTileWidget(
-                                    newsProvider.allNews[index].imageUrl,newsProvider.allNews[index].desc,newsProvider.allNews[index].title);
+                                    newsProvider.allNews[index].imageUrl,newsProvider.allNews[index].desc,newsProvider.allNews[index].title,newsProvider.allNews[index].articleUrl);
                               })
                           : Center(child: CircularProgressIndicator());
                     },

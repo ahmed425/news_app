@@ -9,20 +9,20 @@ class NewsTileWidget extends StatelessWidget {
  // NewsTileModel newsTileModel;
  //
  // NewsTileWidget(this.newsTileModel);
-final String imageUrl,desc,title;
+final String imageUrl,desc,title,articleUrl;
 
-NewsTileWidget(this.imageUrl, this.desc, this.title);
+NewsTileWidget(this.imageUrl, this.desc, this.title,this.articleUrl);
 
   @override
   Widget build(BuildContext context) {
-    // final providerData = Provider.of<ArticleDetailsProvider>(context);
+    final providerData = Provider.of<ArticleDetailsProvider>(context);
 
     return GestureDetector(
       onTap: () {
-        // providerData.setUrl(_articleUrl);
-        // Navigator.push(context, MaterialPageRoute(builder: (context) =>
-        //     ArticleDetails(
-        //     )));
+        providerData.setUrl(articleUrl);
+        Navigator.push(context, MaterialPageRoute(builder: (context) =>
+            ArticleDetails(
+            )));
       },
       child: Container(
 padding: EdgeInsets.all(10),

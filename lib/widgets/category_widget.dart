@@ -8,7 +8,7 @@ import '../views/news_for_specific_category.dart';
 class CategoryWidget extends StatelessWidget {
 final CategoryModel categoryModel;
 
-CategoryWidget(this.categoryModel);
+const CategoryWidget({Key key, this.categoryModel}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -18,8 +18,7 @@ CategoryWidget(this.categoryModel);
         Navigator.push(
             context,
             MaterialPageRoute(
-                builder: (context) => NewsForSpecificCategory(
-                      categoryModel,
+                builder: (context) => NewsForSpecificCategory(categoryModel
                     )));
       },
       child: Container(

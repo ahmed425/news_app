@@ -10,14 +10,14 @@ import '../models/category_model.dart';
 
 class NewsForSpecificCategory extends StatelessWidget {
   final CategoryModel tappedCategory;
-
   NewsForSpecificCategory(this.tappedCategory);
 
   @override
   Widget build(BuildContext context) {
-    print("build category is" + tappedCategory.categoryName);
-    final CategoryNewsProvider categoryNewsProvider =
-        new CategoryNewsProvider(tappedCategory.categoryName);
+    // categoryNewsProvider.getCategoryNews(tappedCategory.categoryName);
+    // final CategoryNewsProvider categoryNewsProvider =
+    //     new CategoryNewsProvider(tappedCategory.categoryName);
+    // categoryNewsProvider.getCategoryNews(tappedCategory.categoryName);
     return Scaffold(
       appBar: myAppBar(),
       body:
@@ -27,15 +27,16 @@ class NewsForSpecificCategory extends StatelessWidget {
           height: MediaQuery.of(context).size.height,
           child: ChangeNotifierProvider<CategoryNewsProvider>(
             create: (context) =>
-                CategoryNewsProvider(tappedCategory.categoryName),
+                CategoryNewsProvider(),
             child: Consumer<CategoryNewsProvider>(
               builder: (buildContext, categoryNewsProvider, _) {
                 print(" category is :" + tappedCategory.categoryName);
                 // categoryNewsProvider
                 //     .getCategoryNews(tappedCategory.categoryName);
                 // print(categoryNewsProvider.categoryNews.toString());
-                print("Fetched category news are :" +
+                print("Fetched category news when building UI  are :" +
                     categoryNewsProvider.categoryNews.toString());
+
                 return (categoryNewsProvider.categoryNews != null)
                     ? ListView.builder(
                         itemCount: categoryNewsProvider.categoryNews.length,
@@ -47,7 +48,8 @@ class NewsForSpecificCategory extends StatelessWidget {
                                   .categoryNews[index].urlToImage,
                               categoryNewsProvider
                                   .categoryNews[index].description,
-                              categoryNewsProvider.categoryNews[index].title);
+                              categoryNewsProvider.categoryNews[index].title,categoryNewsProvider
+                              .categoryNews[index].articleUrl);
                         })
                     : Center(child: CircularProgressIndicator());
               },
