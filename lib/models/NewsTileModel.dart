@@ -8,13 +8,13 @@ class NewsTileModel {
       @required this.title,
       @required this.desc,
       @required this.articleUrl});
-  factory NewsTileModel.fromJson(Map<String, dynamic> json){
-    return NewsTileModel(
-        imageUrl: json['urlToImage'],
-        title: json['title'],
-        desc: json['description'],
-        articleUrl: json['articleUrl']
-    );
+  // factory NewsTileModel.fromJson(Map<String, dynamic> json){
+  //   return NewsTileModel(
+  //       imageUrl: json['urlToImage'],
+  //       title: json['title'],
+  //       desc: json['description'],
+  //       articleUrl: json['articleUrl']
+  //   );
   }
 
-}
+

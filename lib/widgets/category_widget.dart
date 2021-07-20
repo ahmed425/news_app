@@ -10,13 +10,13 @@ class CategoryWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        print("tapping category name is :" + _categoryName);
-        Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) => NewsForSpecificCategory(
-                      _categoryName,
-                    )));
+        // print("tapping category name is :" + _categoryName);
+        // Navigator.push(
+        //     context,
+        //     MaterialPageRoute(
+        //         builder: (context) => NewsForSpecificCategory(
+        //               _categoryName,
+        //             )));
       },
       child: Container(
         margin: EdgeInsets.only(right: 14),

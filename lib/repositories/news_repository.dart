@@ -7,6 +7,6 @@ class NewsRepository{
   NewsService _newsService = NewsService();
 
   Future<List<NewsTileModel>> fetchNews(){
-    return _newsService.fetchNews();
+    return _newsService.getAllNews();
   }
 }

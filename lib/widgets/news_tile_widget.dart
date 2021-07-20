@@ -3,23 +3,23 @@ import 'package:news_app/providers/article_details_provider.dart';
 import 'package:news_app/views/article_details.dart';
 import 'package:provider/provider.dart';
 
-class NewsTileWidget extends StatelessWidget {
-  String _imageUrl;
-  String _articleUrl;
+import '../models/NewsTileModel.dart';
 
-  NewsTileWidget(this._imageUrl, this._title, this._desc, this._articleUrl);
-  String _title ;
-  String _desc;
+class NewsTileWidget extends StatelessWidget {
+ NewsTileModel newsTileModel;
+
+ NewsTileWidget(this.newsTileModel);
+
   @override
   Widget build(BuildContext context) {
-    final providerData = Provider.of<ArticleDetailsProvider>(context);
+    // final providerData = Provider.of<ArticleDetailsProvider>(context);
 
     return GestureDetector(
       onTap: () {
-        providerData.setUrl(_articleUrl);
-        Navigator.push(context, MaterialPageRoute(builder: (context) =>
-            ArticleDetails(
-            )));
+        // providerData.setUrl(_articleUrl);
+        // Navigator.push(context, MaterialPageRoute(builder: (context) =>
+        //     ArticleDetails(
+        //     )));
       },
       child: Container(
 padding: EdgeInsets.all(10),
@@ -27,7 +27,7 @@ padding: EdgeInsets.all(10),
         child: Column(
           children: [
             ClipRRect(
-              child: Image.network(_imageUrl,errorBuilder: (BuildContext context, Object exception, StackTrace stackTrace) {
+              child: Image.network(newsTileModel.imageUrl,errorBuilder: (BuildContext context, Object exception, StackTrace stackTrace) {
                 return Icon(Icons.do_not_disturb);
               },),
               borderRadius: BorderRadius.circular(16),
@@ -36,7 +36,7 @@ padding: EdgeInsets.all(10),
               height: 8,
             ),
             Text(
-              _title,
+              newsTileModel.title,
               style: TextStyle(
                   fontSize: 18,
                   color: Colors.black87,
@@ -46,7 +46,7 @@ padding: EdgeInsets.all(10),
               height: 8,
             ),
             Text(
-              _desc,
+              newsTileModel.desc,
               style: TextStyle(color: Colors.black54),
             )
           ],
