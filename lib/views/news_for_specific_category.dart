@@ -11,7 +11,7 @@ class NewsForSpecificCategory extends StatelessWidget {
   Widget build(BuildContext context) {
     final providerData = Provider.of<NewsProvider>(context);
     print("Tapped Category is " + newsCategory);
-    providerData.fetchAndSetNewsForSpecificCategory(newsCategory);
+    // providerData.fetchAndSetNewsForSpecificCategory(newsCategory);
     return Scaffold(
         appBar: myAppBar(),
         body: SafeArea(
@@ -22,8 +22,9 @@ class NewsForSpecificCategory extends StatelessWidget {
                   Container(
                     margin: EdgeInsets.only(top: 16),
                     child: FutureBuilder(
-                        future: providerData
-                            .fetchAndSetNewsForSpecificCategory(newsCategory),
+                        // future:
+                        // providerData
+                        //     .fetchAndSetNewsForSpecificCategory(newsCategory),
                         builder:
                             (BuildContext context, AsyncSnapshot snapshot) {
                           print(snapshot.data);
