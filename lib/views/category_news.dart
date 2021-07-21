@@ -25,21 +25,15 @@ class CategoryNews extends StatelessWidget {
             child: Consumer<CategoryNewsProvider>(
               builder: (buildContext, categoryNewsProvider, _) {
                 print(" category is :" + tappedCategory.categoryName);
-                if (categoryNewsProvider.categoryNews==[]) {
-                  return Text(
-                      "You have made too many requests recently. Developer accounts are limited to 100 requests over a 24 hour period (50 requests available every 12 hours). Please upgrade to a paid plan if you need more requests.");
-                }
-                else {
-                  return (categoryNewsProvider.categoryNews != null)
-                      ? ListView.builder(
-                      itemCount: categoryNewsProvider.categoryNews.length,
-                      itemBuilder: (ctx, index) {
-                        print(categoryNewsProvider.categoryNews.toString());
-                        return NewsTileWidget(
-                            categoryNewsProvider.categoryNews[index]);
-                      })
-                      : Center(child: CircularProgressIndicator());
-                }
+                return (categoryNewsProvider.categoryNews != null)
+                    ? ListView.builder(
+                        itemCount: categoryNewsProvider.categoryNews.length,
+                        itemBuilder: (ctx, index) {
+                          print(categoryNewsProvider.categoryNews.toString());
+                          return NewsTileWidget(
+                              categoryNewsProvider.categoryNews[index]);
+                        })
+                    : Center(child: CircularProgressIndicator());
               },
             ),
           ),

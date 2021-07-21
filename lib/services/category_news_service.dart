@@ -8,7 +8,7 @@ class CategoryNewsService {
 
   Future<List<NewsTileModel>> getCategoryNews(String category) async {
     String url =
-        "http://newsapi.org/v2/top-headlines?country=in&category=$category&apiKey=65b4b1023b67477382f03e241289d4ec";
+        "http://newsapi.org/v2/top-headlines?country=in&category=$category&apiKey=376e4657a0ef49d981f1cafe89f6d3ca";
     var response = await http.get(url);
 
     var jsonData = await jsonDecode(response.body);

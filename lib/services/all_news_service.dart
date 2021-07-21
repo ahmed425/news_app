@@ -8,7 +8,7 @@ class AllNewsService {
 
   Future<List<NewsTileModel>> getAllNews() async {
     String url =
-        "http://newsapi.org/v2/top-headlines?country=in&excludeDomains=stackoverflow.com&sortBy=publishedAt&language=en&apiKey=65b4b1023b67477382f03e241289d4ec";
+        "http://newsapi.org/v2/top-headlines?country=in&excludeDomains=stackoverflow.com&sortBy=publishedAt&language=en&apiKey=376e4657a0ef49d981f1cafe89f6d3ca";
 
     var response = await http.get(url);
 
