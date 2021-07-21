@@ -9,7 +9,7 @@ News Flutter Demo Application using News Api ("https://newsapi.org/"):
 - User can navigate between different news categories
 - Display news according to chosen category
 - Display detail screen for news selected
-- Updating news response every 10 seconds in background using android_alarm_manager to make the fetchNews callback periodically in background each 10 seconds. 
+- Updating news response every 10 seconds in background using android_alarm_manager to make the getNews callback periodically in background each 10 seconds. 
 
 
 
