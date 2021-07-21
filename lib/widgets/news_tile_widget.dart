@@ -7,8 +7,6 @@ class NewsTileWidget extends StatelessWidget {
  NewsTileWidget(this.newsTileModel);
   @override
   Widget build(BuildContext context) {
-    // final providerData = Provider.of<ArticleDetailsProvider>(context);
-
     return GestureDetector(
       onTap: () {
         Navigator.of(context).push(MaterialPageRoute(builder: (context) => ArticleDetails(newsTileModel,)));

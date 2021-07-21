@@ -1,4 +1,5 @@
-import 'dart:convert';
+// import 'dart:convert';
+// import 'package:android_alarm_manager_plus/android_alarm_manager.dart';
 import 'package:android_alarm_manager_plus/android_alarm_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:news_app/models/news_tile_model.dart';
@@ -11,15 +12,22 @@ class AllNewsProvider with ChangeNotifier {
   AllNewsRepository _allNewsRepository = AllNewsRepository();
   AllNewsProvider(){
     getNews();
+
   }
 
   void getNews() {
     _allNewsRepository.fetchNews().then(
             (news){
               allNews  = news;
+              // print("Updating........");
           notifyListeners();
         }
     );
   }
 
+}
+void updateNews() {
+  print('Updating news is called at ${DateTime.now()}');
+
+  // newsProvider.fetchAndSetNews();
 }
