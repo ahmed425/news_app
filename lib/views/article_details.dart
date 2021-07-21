@@ -10,7 +10,6 @@ class ArticleDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final providerData = Provider.of<ArticleDetailsProvider>(context);
     return Scaffold(
       appBar: myAppBar(),
       body: Stack(

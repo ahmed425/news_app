@@ -6,20 +6,18 @@ import '../models/category_model.dart';
 import '../views/news_for_specific_category.dart';
 
 class CategoryWidget extends StatelessWidget {
-final CategoryModel categoryModel;
+  final CategoryModel categoryModel;
 
-const CategoryWidget({Key key, this.categoryModel}) : super(key: key);
+  const CategoryWidget({Key key, this.categoryModel}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        // print("tapping category name is :" + _categoryName);
         Navigator.push(
             context,
             MaterialPageRoute(
-                builder: (context) => NewsForSpecificCategory(categoryModel
-                    )));
+                builder: (context) => NewsForSpecificCategory(categoryModel)));
       },
       child: Container(
         margin: EdgeInsets.only(right: 14),
@@ -55,5 +53,4 @@ const CategoryWidget({Key key, this.categoryModel}) : super(key: key);
       ),
     );
   }
-
 }

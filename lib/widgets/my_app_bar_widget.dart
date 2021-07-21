@@ -1,19 +1,14 @@
 import 'package:flutter/material.dart';
 
-Widget myAppBar(){
+Widget myAppBar() {
   return AppBar(
     title: Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
         Text(
-          "Flutter ",
-          style:
-          TextStyle(color: Colors.black87, fontWeight: FontWeight.w600),
-        ),
-        Text(
-          "News App",
+          "Flutter News App",
           style: TextStyle(color: Colors.blue, fontWeight: FontWeight.w600),
-        )
+        ),
       ],
     ),
     backgroundColor: Colors.transparent,

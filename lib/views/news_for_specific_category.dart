@@ -8,14 +8,14 @@ import '../models/category_model.dart';
 
 class NewsForSpecificCategory extends StatelessWidget {
   final CategoryModel tappedCategory;
+
   NewsForSpecificCategory(this.tappedCategory);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: myAppBar(),
-      body:
-          Padding(
+      body: Padding(
         padding: const EdgeInsets.only(left: 10),
         child: Container(
           height: MediaQuery.of(context).size.height,
@@ -25,21 +25,13 @@ class NewsForSpecificCategory extends StatelessWidget {
             child: Consumer<CategoryNewsProvider>(
               builder: (buildContext, categoryNewsProvider, _) {
                 print(" category is :" + tappedCategory.categoryName);
-                // categoryNewsProvider
-                //     .getCategoryNews(tappedCategory.categoryName);
-                // print(categoryNewsProvider.categoryNews.toString());
-                print("Fetched category news when building UI  are :" +
-                    categoryNewsProvider.categoryNews.toString());
-
                 return (categoryNewsProvider.categoryNews != null)
                     ? ListView.builder(
                         itemCount: categoryNewsProvider.categoryNews.length,
                         itemBuilder: (ctx, index) {
                           print(categoryNewsProvider.categoryNews.toString());
-
                           return NewsTileWidget(
-                              categoryNewsProvider.categoryNews[index]
-                              );
+                              categoryNewsProvider.categoryNews[index]);
                         })
                     : Center(child: CircularProgressIndicator());
               },
