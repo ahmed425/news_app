@@ -14,7 +14,8 @@ News Flutter Demo Application using News Api ("https://newsapi.org/"):
 
 
 ## Pattern/Approach Used 
-The Provider pattern is used for data and state management .
+The Provider Architecture is used for data and state management as per the following diagram:
+![news_app](https://i.imgur.com/GPuEbig.png)
 
 ## Flutter Packages/Plugins/Libraries Used
 
