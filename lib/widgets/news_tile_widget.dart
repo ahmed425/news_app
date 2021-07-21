@@ -1,22 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/models/news_tile_model.dart';
-import 'package:news_app/providers/article_details_provider.dart';
 import 'package:news_app/views/article_details.dart';
-import 'package:provider/provider.dart';
 
 class NewsTileWidget extends StatelessWidget {
   final NewsTileModel newsTileModel;
  NewsTileWidget(this.newsTileModel);
   @override
   Widget build(BuildContext context) {
-    final providerData = Provider.of<ArticleDetailsProvider>(context);
+    // final providerData = Provider.of<ArticleDetailsProvider>(context);
 
     return GestureDetector(
       onTap: () {
-        providerData.setUrl(newsTileModel.articleUrl);
-        Navigator.push(context, MaterialPageRoute(builder: (context) =>
-            ArticleDetails(
-            )));
+        Navigator.of(context).push(MaterialPageRoute(builder: (context) => ArticleDetails(newsTileModel,)));
+
       },
       child: Container(
 padding: EdgeInsets.all(10),
