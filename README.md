@@ -24,6 +24,7 @@ The Provider Architecture is used for data and state management as per the follo
  - webview_flutter: ^0.3.19+9
  - provider: ^4.3.3
  - android_alarm_manager_plus: ^0.4.5+20
+ - fluttertoast: ^7.1.6
   
 
 ## How to run
