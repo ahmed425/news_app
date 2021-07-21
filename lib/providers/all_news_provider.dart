@@ -20,6 +20,7 @@ class AllNewsProvider with ChangeNotifier {
     _allNewsRepository.fetchNews().then((news) {
       allNews = news;
       print('Fetching or Updating news is done at ${DateTime.now()}');
+      print("Fetched News are : " + allNews.toString());
       notifyListeners();
     });
   }
