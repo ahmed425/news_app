@@ -1,25 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:news_app/models/news_tile_model.dart';
 import 'package:news_app/providers/article_details_provider.dart';
 import 'package:news_app/views/article_details.dart';
 import 'package:provider/provider.dart';
 
-import '../models/NewsTileModel.dart';
-
 class NewsTileWidget extends StatelessWidget {
- // NewsTileModel newsTileModel;
- //
- // NewsTileWidget(this.newsTileModel);
-final String imageUrl,desc,title,articleUrl;
-
-NewsTileWidget(this.imageUrl, this.desc, this.title,this.articleUrl);
-
+  final NewsTileModel newsTileModel;
+ NewsTileWidget(this.newsTileModel);
   @override
   Widget build(BuildContext context) {
     final providerData = Provider.of<ArticleDetailsProvider>(context);
 
     return GestureDetector(
       onTap: () {
-        providerData.setUrl(articleUrl);
+        providerData.setUrl(newsTileModel.articleUrl);
         Navigator.push(context, MaterialPageRoute(builder: (context) =>
             ArticleDetails(
             )));
@@ -30,7 +24,7 @@ padding: EdgeInsets.all(10),
         child: Column(
           children: [
             ClipRRect(
-              child: Image.network(imageUrl,errorBuilder: (BuildContext context, Object exception, StackTrace stackTrace) {
+              child: Image.network(newsTileModel.imageUrl,errorBuilder: (BuildContext context, Object exception, StackTrace stackTrace) {
                 return Icon(Icons.do_not_disturb);
               },),
               borderRadius: BorderRadius.circular(16),
@@ -39,7 +33,7 @@ padding: EdgeInsets.all(10),
               height: 8,
             ),
             Text(
-              title,
+              newsTileModel.title,
               style: TextStyle(
                   fontSize: 18,
                   color: Colors.black87,
@@ -49,7 +43,7 @@ padding: EdgeInsets.all(10),
               height: 8,
             ),
             Text(
-              desc,
+              newsTileModel.desc,
               style: TextStyle(color: Colors.black54),
             )
           ],

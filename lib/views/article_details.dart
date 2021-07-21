@@ -8,14 +8,16 @@ class ArticleDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final providerData = Provider.of<ArticleDetailsProvider>(context);
-    return Scaffold(
-      appBar: myAppBar(),
-      body: Stack(
-        children: <Widget>[
-          WebView(
-            initialUrl: providerData.articleUrl,
-          ),
-        ],
+    return ChangeNotifierProvider(
+      child: Scaffold(
+        appBar: myAppBar(),
+        body: Stack(
+          children: <Widget>[
+            WebView(
+              initialUrl: providerData.articleUrl,
+            ),
+          ],
+        ),
       ),
     );
   }

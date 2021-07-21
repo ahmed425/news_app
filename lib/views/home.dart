@@ -11,7 +11,7 @@ import '../providers/category_provider.dart';
 import '../widgets/category_widget.dart';
 import '../widgets/news_tile_widget.dart';
 
-AllNewsProvider newsProvider;
+// AllNewsProvider newsProvider;
 
 class HomePage extends StatelessWidget {
   final int alarmId = 1;
@@ -76,7 +76,8 @@ class HomePage extends StatelessWidget {
                               itemBuilder: (ctx, index) {
                                 print(newsProvider.allNews.toString());
                                 return NewsTileWidget(
-                                    newsProvider.allNews[index].imageUrl,newsProvider.allNews[index].desc,newsProvider.allNews[index].title,newsProvider.allNews[index].articleUrl);
+                                  newsProvider.allNews[index]
+                                    );
                               })
                           : Center(child: CircularProgressIndicator());
                     },
@@ -87,54 +88,11 @@ class HomePage extends StatelessWidget {
           ],
         ),
       ),
-      // Container(
-      //   padding: EdgeInsets.symmetric(horizontal: 16),
-      //   height: 70,
-      //   child: ListView.builder(
-      //       scrollDirection: Axis.horizontal,
-      //       itemCount: categoryProvider.categories.length,
-      //       itemBuilder: (context, index) {
-      //         return CategoryWidget(
-      //             categoryProvider.categories[index].imageAssetUrl,
-      //             categoryProvider.categories[index].categoryName);
-      //       }),
-      // ),
     );
   }
 }
 
-void updateNews() {
-  print('Updating news is called at ${DateTime.now()}');
-  // newsProvider.fetchAndSetNews();
-}
-// Container(
-// margin: EdgeInsets.only(top: 16),
-// child:
-
-// return ListView.builder(
-// itemCount: snapshot.data.length,
-// shrinkWrap: true,
-// physics: ClampingScrollPhysics(),
-// itemBuilder: (context, index) {
-// return NewsTileWidget(
-// snapshot.data[index].urlToImage,
-// snapshot.data[index].title,
-// snapshot.data[index].description,
-// snapshot.data[index].articleUrl);
-// });
+// void updateNews() {
+//   print('Updating news is called at ${DateTime.now()}');
+//   // newsProvider.fetchAndSetNews();
 // }
-// }),
-
-// FutureBuilder(
-// future: newsProvider.fetchAndSetNews(),
-// builder:
-// (BuildContext context, AsyncSnapshot snapshot) {
-// print(snapshot.data);
-// if (snapshot.data == null) {
-// return Center(
-// child: Container(
-// child: Center(
-// child: CircularProgressIndicator())),
-// );
-// } else {
-// // _loading=false;

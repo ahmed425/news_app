@@ -1,34 +1,33 @@
 import 'package:flutter/cupertino.dart';
+import 'package:news_app/models/news_tile_model.dart';
 import 'package:news_app/repositories/category_news_repository.dart';
 // import 'package:news_app/repositories/category_repository.dart';
 
-import '../models/NewsTileModel.dart';
-import '../models/article_model.dart';
 
 class CategoryNewsProvider with ChangeNotifier{
+// String categoryName;
 
-  List<ArticleModel> categoryNews ;
-// String category;
 
-  // CategoryNewsProvider(this.category);
+  List<NewsTileModel> categoryNews ;
 
   CategoryNewsRepository _categoryNewsRepository = CategoryNewsRepository();
-  // CategoryNewsProvider(String category){
-  //   print("category in provider constructor:  "+category);
-  //   getCategoryNews(category);
-  // }
-
-  Future<List<ArticleModel>> getCategoryNews(String category) async{
-    print("category in getCategoryNews:  "+category);
+CategoryNewsProvider(String category){
+    print("category in provider constructor:  "+category);
+    getCategoryNews(category);
+  }
+  void getCategoryNews(String category) async{
+// category=this.categoryName;
+print("category in getCategoryNews:  "+category);
 
     await _categoryNewsRepository.fetchCategoryNews(category).then(
-            (categoryNews){
-          categoryNews  = categoryNews;
-          print("category news fetched in Provider Constructor Method are: "+categoryNews.toString());
-          // notifyListeners();
+            (fetchedCategoryNews){
+                categoryNews=fetchedCategoryNews;
+                print("fetchedCategoryNews in Provider Constructor Method are: "+fetchedCategoryNews.toString());
+
+                print("categoryNews in Provider Constructor Method are: "+categoryNews.toString());
+          notifyListeners();
         }
     );
-return categoryNews;
   }
 
 }
