@@ -11,7 +11,7 @@
 
     <application
         android:name=".Application"
-        android:label="news_app"
+        android:label="News"
         android:usesCleartextTraffic="true"
         android:icon="@mipmap/ic_launcher">
         <activity
