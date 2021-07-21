@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:news_app/models/news_tile_model.dart';
 import 'package:http/http.dart' as http;
 
@@ -24,6 +25,13 @@ class CategoryNewsService {
           _categoryNews.add(article);
         }
       });
+    }
+    else {
+      Fluttertoast.showToast(
+        msg: 'You have made too many requests recently. Developer accounts are limited to 100 requests over a 24 hour period (50 requests available every 12 hours). Please upgrade to a paid plan if you need more requests',
+        toastLength: Toast.LENGTH_LONG,
+        gravity: ToastGravity.BOTTOM,
+      );
     }
     return _categoryNews;
   }

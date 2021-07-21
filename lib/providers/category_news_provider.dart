@@ -14,6 +14,7 @@ print("category in getCategoryNews:  "+category);
     await _categoryNewsRepository.fetchCategoryNews(category).then(
             (fetchedCategoryNews){
                 categoryNews=fetchedCategoryNews;
+                print("Fetched Category News are : "+categoryNews.toString());
           notifyListeners();
         }
     );
