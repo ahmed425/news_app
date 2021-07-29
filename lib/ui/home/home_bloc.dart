@@ -2,18 +2,18 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
-import 'package:news_app/models/category_model.dart';
-import 'package:news_app/models/news_tile_model.dart';
-import 'package:news_app/repositories/HomeRepository.dart';
+import 'package:news_app/data/models/category_model.dart';
+import 'package:news_app/data/models/news_tile_model.dart';
+import 'package:news_app/data/repositories/HomeRepository.dart';
 
 part 'home_event.dart';
 part 'home_state.dart';
 
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
   final HomeRepository _homeRepository;
-  final List <CategoryModel> category;
+  final List <CategoryModel> categories;
 
-  HomeBloc(this._homeRepository, this.category) : super(HomeInitial(category));
+  HomeBloc(this._homeRepository, this.categories) : super(HomeInitial(categories));
 
   @override
   Stream<HomeState> mapEventToState(HomeEvent event) async* {

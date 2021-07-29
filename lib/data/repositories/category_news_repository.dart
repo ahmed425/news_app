@@ -1,11 +1,18 @@
 import 'dart:convert';
+
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:news_app/data/models/news_tile_model.dart';
 import 'package:http/http.dart' as http;
 
-class CategoryNewsService {
+abstract class CategoryNewsRepository {
+  /// Throws [NetworkException].
+  Future<List<NewsTileModel>> getCategoryNews(String category);
+}
+
+class CategoryNewsRepositoryImplementation implements CategoryNewsRepository {
   List<NewsTileModel> _categoryNews = [];
 
+  @override
   Future<List<NewsTileModel>> getCategoryNews(String category) async {
     String url =
         "http://newsapi.org/v2/top-headlines?country=in&category=$category&apiKey=376e4657a0ef49d981f1cafe89f6d3ca";
@@ -25,10 +32,10 @@ class CategoryNewsService {
           _categoryNews.add(article);
         }
       });
-    }
-    else {
+    } else {
       Fluttertoast.showToast(
-        msg: 'You have made too many requests recently. Developer accounts are limited to 100 requests over a 24 hour period (50 requests available every 12 hours). Please upgrade to a paid plan if you need more requests',
+        msg:
+            'You have made too many requests recently. Developer accounts are limited to 100 requests over a 24 hour period (50 requests available every 12 hours). Please upgrade to a paid plan if you need more requests',
         toastLength: Toast.LENGTH_LONG,
         gravity: ToastGravity.BOTTOM,
       );
@@ -36,3 +43,5 @@ class CategoryNewsService {
     return _categoryNews;
   }
 }
+
+class NetworkException implements Exception {}

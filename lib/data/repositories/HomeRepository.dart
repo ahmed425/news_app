@@ -2,8 +2,8 @@ import 'dart:convert';
 import 'dart:core';
 
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:news_app/models/category_model.dart';
-import 'package:news_app/models/news_tile_model.dart';
+import 'package:news_app/data/models/category_model.dart';
+import 'package:news_app/data/models/news_tile_model.dart';
 import 'package:http/http.dart' as http;
 
 abstract class HomeRepository {

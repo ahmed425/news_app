@@ -1,9 +1,9 @@
 import 'package:android_alarm_manager_plus/android_alarm_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:news_app/home_bloc.dart';
-import 'package:news_app/repositories/HomeRepository.dart';
-import 'package:news_app/views/home.dart';
+import 'package:news_app/ui/home/home_bloc.dart';
+import 'package:news_app/data/repositories/HomeRepository.dart';
+import 'package:news_app/ui/home/home.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

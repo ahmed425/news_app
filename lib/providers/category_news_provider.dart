@@ -1,6 +1,6 @@
 import 'package:android_alarm_manager_plus/android_alarm_manager.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:news_app/models/news_tile_model.dart';
+import 'package:news_app/data/models/news_tile_model.dart';
 import 'package:news_app/repositories/category_news_repository.dart';
 import 'dart:io' show Platform;
 
