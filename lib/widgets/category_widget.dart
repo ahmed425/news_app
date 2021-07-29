@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:news_app/ui/category_news/category_news.dart';
 import '../data/models/category_model.dart';
 
@@ -12,6 +13,11 @@ class CategoryWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
+        // Fluttertoast.showToast(
+        //   msg: categoryModel.categoryName,
+        //   toastLength: Toast.LENGTH_LONG,
+        //   gravity: ToastGravity.BOTTOM,
+        // );
         Navigator.push(
             context,
             MaterialPageRoute(

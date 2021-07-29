@@ -10,9 +10,8 @@ part 'category_news_state.dart';
 
 class CategoryNewsBloc extends Bloc<CategoryNewsEvent, CategoryNewsState> {
   final CategoryNewsRepository categoryNewsRepository;
-  String category;
-  final List <NewsTileModel> newsList;
-  CategoryNewsBloc(this.categoryNewsRepository, this.category, this.newsList) : super(CategoryNewsLoaded(newsList));
+  // final List <NewsTileModel> newsList;
+  CategoryNewsBloc(this.categoryNewsRepository) : super(CategoryNewsError("nj,bhjc"));
 
   @override
   Stream<CategoryNewsState> mapEventToState(
@@ -21,7 +20,8 @@ class CategoryNewsBloc extends Bloc<CategoryNewsEvent, CategoryNewsState> {
     if (event is GetCategoryNews) {
       try {
         // yield HomeLoading();
-        final categoryNews = await categoryNewsRepository.getCategoryNews(category);
+        print("event category name is "+event.categoryName);
+        final categoryNews = await categoryNewsRepository.getCategoryNews(event.categoryName);
 
         yield CategoryNewsLoaded(categoryNews);
       } on NetworkException {

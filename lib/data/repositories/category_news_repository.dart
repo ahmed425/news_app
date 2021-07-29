@@ -10,17 +10,23 @@ abstract class CategoryNewsRepository {
 }
 
 class CategoryNewsRepositoryImplementation implements CategoryNewsRepository {
-  List<NewsTileModel> _categoryNews = [];
+  List<NewsTileModel> categoryNews = [];
 
+  // String category;
   @override
   Future<List<NewsTileModel>> getCategoryNews(String category) async {
+    print("cat in get : "+category);
     String url =
         "http://newsapi.org/v2/top-headlines?country=in&category=$category&apiKey=376e4657a0ef49d981f1cafe89f6d3ca";
     var response = await http.get(url);
 
     var jsonData = await jsonDecode(response.body);
+    if (categoryNews != []) {
+      categoryNews.clear();
+    }
 
     if (jsonData['status'] == "ok") {
+
       jsonData["articles"].forEach((element) {
         if (element['urlToImage'] != null && element['description'] != null) {
           NewsTileModel article = NewsTileModel(
@@ -29,7 +35,10 @@ class CategoryNewsRepositoryImplementation implements CategoryNewsRepository {
             desc: element['description'],
             articleUrl: element["url"],
           );
-          _categoryNews.add(article);
+
+
+            categoryNews.add(article);
+
         }
       });
     } else {
@@ -40,7 +49,8 @@ class CategoryNewsRepositoryImplementation implements CategoryNewsRepository {
         gravity: ToastGravity.BOTTOM,
       );
     }
-    return _categoryNews;
+    print("length : "+categoryNews.length.toString());
+    return categoryNews;
   }
 }
 
