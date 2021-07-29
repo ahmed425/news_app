@@ -5,8 +5,8 @@ import 'package:news_app/data/models/news_tile_model.dart';
 import 'package:news_app/data/repositories/category_news_repository.dart';
 import 'package:news_app/ui/category_news/category_news_bloc.dart';
 import 'package:news_app/ui/home/home_bloc.dart';
-import 'package:news_app/widgets/my_app_bar_widget.dart';
-import 'package:news_app/widgets/news_tile_widget.dart';
+import 'package:news_app/ui/widgets/my_app_bar_widget.dart';
+import 'package:news_app/ui/widgets/news_tile_widget.dart';
 
 import '../../data/models/category_model.dart';
 

@@ -7,7 +7,7 @@ import 'package:news_app/ui/category_news/category_news_bloc.dart';
 import 'package:news_app/ui/home/home_bloc.dart';
 import 'package:news_app/data/repositories/HomeRepository.dart';
 import 'package:news_app/ui/home/home.dart';
-import 'package:news_app/widgets/category_widget.dart';
+import 'package:news_app/ui/widgets/category_widget.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

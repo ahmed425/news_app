@@ -4,12 +4,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news_app/ui/home/home_bloc.dart';
 import 'package:news_app/data/models/category_model.dart';
 import 'package:news_app/data/models/news_tile_model.dart';
-import 'package:news_app/widgets/category_widget.dart';
-import 'package:news_app/widgets/my_app_bar_widget.dart';
-import 'package:news_app/widgets/news_tile_widget.dart';
+import 'package:news_app/ui/widgets/category_widget.dart';
+import 'package:news_app/ui/widgets/my_app_bar_widget.dart';
+import 'package:news_app/ui/widgets/news_tile_widget.dart';
 import 'package:provider/provider.dart';
-import '../../widgets/category_widget.dart';
-import '../../widgets/news_tile_widget.dart';
+import '../widgets/category_widget.dart';
+import '../widgets/news_tile_widget.dart';
 
 class HomePage extends StatelessWidget {
   @override
