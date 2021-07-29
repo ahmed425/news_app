@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
       ),
       home: BlocProvider(
         child:HomePage(),
-        create:(context) => HomeBloc(HomeRepositoryImplementation()),
+        create:(context) => HomeBloc(HomeRepositoryImplementation(),HomeRepositoryImplementation().categories),
       ),
     );
   }

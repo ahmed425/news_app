@@ -11,8 +11,9 @@ part 'home_state.dart';
 
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
   final HomeRepository _homeRepository;
+  final List <CategoryModel> category;
 
-  HomeBloc(this._homeRepository) : super(HomeInitial());
+  HomeBloc(this._homeRepository, this.category) : super(HomeInitial(category));
 
   @override
   Stream<HomeState> mapEventToState(HomeEvent event) async* {

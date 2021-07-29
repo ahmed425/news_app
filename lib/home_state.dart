@@ -2,12 +2,16 @@ part of 'home_bloc.dart';
 
 @immutable
 abstract class HomeState {
+
   const HomeState();
 }
 
 
 class HomeInitial extends HomeState {
-  const HomeInitial();
+  final List <CategoryModel> category;
+
+  HomeInitial(this.category);
+
 }
 
 class HomeLoading extends HomeState {
