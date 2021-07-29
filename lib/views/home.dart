@@ -9,14 +9,17 @@ import 'package:provider/provider.dart';
 import '../providers/category_provider.dart';
 import '../widgets/category_widget.dart';
 import '../widgets/news_tile_widget.dart';
-
+BuildContext context;
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    context=context;
     return Scaffold(
       appBar: myAppBar(),
       body: SingleChildScrollView(
-        child: Column(
+        child:
+
+        Column(
           children: [
             /// Categories
             Padding(
@@ -48,7 +51,7 @@ class HomePage extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(left: 10),
               child: Container(
-                height: MediaQuery.of(context).size.height * (5 / 6),
+                // height: MediaQuery.of(context).size.height * (5 / 6),
                 child: ChangeNotifierProvider<AllNewsProvider>(
                   create: (context) => AllNewsProvider(),
                   child: Consumer<AllNewsProvider>(
@@ -71,4 +74,41 @@ class HomePage extends StatelessWidget {
       ),
     );
   }
+}
+Widget buildInitial() {
+  return
+    Padding(
+      padding: const EdgeInsets.only(left: 10),
+      child: Container(
+        height: MediaQuery.of(context).size.height / 6,
+        child: ChangeNotifierProvider<CategoryProvider>(
+          create: (context) => CategoryProvider(),
+          child: Consumer<CategoryProvider>(
+            builder: (buildContext, categoryProvider, _) {
+              print(categoryProvider.categories.toString());
+              return (categoryProvider.categories != null)
+                  ? ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: categoryProvider.categories.length,
+                  itemBuilder: (ctx, index) {
+                    final category =
+                    categoryProvider.categories[index];
+                    return CategoryWidget(categoryModel: category);
+                  })
+                  : Center(child: CircularProgressIndicator());
+            },
+          ),
+        ),
+      ),
+    );
+}
+Widget buildLoading() {
+  return Center(
+    child: CircularProgressIndicator(),
+  );
+}
+Column buildColumnWithData() {
+  return Column(
+
+  );
 }

@@ -1,5 +1,8 @@
 import 'package:android_alarm_manager_plus/android_alarm_manager.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:news_app/home_bloc.dart';
+import 'package:news_app/repositories/HomeRepository.dart';
 import 'package:news_app/views/home.dart';
 
 void main() async {
@@ -19,7 +22,10 @@ class MyApp extends StatelessWidget {
         primaryColor: Colors.white,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: HomePage(),
+      home: BlocProvider(
+        child:HomePage(),
+        create:(context) => HomeBloc(HomeRepositoryImplementation()),
+      ),
     );
   }
 }
